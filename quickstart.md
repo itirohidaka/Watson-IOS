@@ -1,15 +1,15 @@
-# Quick Start Guide
+# Guia Rápido
 
-This guide contains step-by-step instructions to create an iOS application with the Watson Developer Cloud iOS SDK. The application we build will synthesize English text into spoken audio using the Watson Text to Speech service.
+Este guia contém instruções passo a passo para criar um aplicativo iOS com o Watson Developer Cloud iOS SDK. O aplicativo que construimos irá sintetizar um texto em Inglês em um audio falado utilizando o serviço Watson Text to Speech.
 
-## Create Application
+## Criar o Aplicativo
 
-1. Open Xcode and create a new project with the "Single View Application" template.
+1. Abrir o Xcode e criar um novo projeto com o modelo "Single View Application".
 
     ![New Project](quickstart-resources/01-NewProject.png?raw=true)
 
 2. Set the product name to "Watson Speaks" and language to "Swift."
-    
+
     ![Project Settings](quickstart-resources/02-ProjectSettings.png?raw=true)
 
 ## Download and Build the iOS SDK Frameworks
@@ -128,7 +128,7 @@ We will modify our project's `ViewController` to synthesize English text with th
     let username = "your-text-to-speech-username"
     let password = "your-text-to-speech-password"
     let textToSpeech = TextToSpeech(username: username, password: password)
-    
+
     let text = "All the problems of the world could be settled easily if men were only willing to think."
     let failure = { (error: Error) in print(error) }
     textToSpeech.synthesize(text, failure: failure) { data in
