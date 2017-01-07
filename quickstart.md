@@ -12,11 +12,11 @@ Este guia contém instruções passo a passo para criar um aplicativo iOS com o 
 
     ![Project Settings](quickstart-resources/02-ProjectSettings.png?raw=true)
 
-## Download and Build the iOS SDK Frameworks
+## Download e Build do Framework iOS SDK
 
-We will use the [Carthage](https://github.com/Carthage/Carthage) dependency manager to download and build the iOS SDK. You will need to [install Carthage](https://github.com/Carthage/Carthage#installing-carthage) if it is not already installed on your system.
+Nós iremos utilizar o gerenciador de dependências [Carthage](https://github.com/Carthage/Carthage) para realizar o download e o build do iOS SDK. Você precisará [instalar o Carthage](https://github.com/Carthage/Carthage#installing-carthage) se ainda não estiver instalado em seu sistema.
 
-1. Create a file in your project directory called `Cartfile`.
+1. Crie um arquivo no diretório do projeto chamado de `Cartfile`.
 
     ![Create Cartfile](quickstart-resources/03-CreateCartfile.png?raw=true)
 
