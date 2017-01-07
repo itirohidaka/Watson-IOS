@@ -1,6 +1,6 @@
 # Guia Rápido
 
-Este guia contém instruções passo a passo para criar um aplicativo iOS com o Watson Developer Cloud iOS SDK. O aplicativo que construimos irá sintetizar um texto em Inglês em um audio falado utilizando o serviço Watson Text to Speech.
+Este guia contém instruções passo a passo para criar um aplicativo iOS com o Watson Developer Cloud iOS SDK. O aplicativo que construiremos irá sintetizar um texto em Inglês em um audio falado utilizando o serviço Watson Text to Speech.
 
 ## Criar o Aplicativo
 
