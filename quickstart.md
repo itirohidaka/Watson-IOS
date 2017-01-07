@@ -12,15 +12,15 @@ Este guia contém instruções passo a passo para criar um aplicativo iOS com o 
 
     ![Project Settings](quickstart-resources/02-ProjectSettings.png?raw=true)
 
-## Download e Build do Framework iOS SDK
+## Download e Construção do Framework iOS SDK
 
-Nós iremos utilizar o gerenciador de dependências [Carthage](https://github.com/Carthage/Carthage) para realizar o download e o build do iOS SDK. Você precisará [instalar o Carthage](https://github.com/Carthage/Carthage#installing-carthage) se ainda não estiver instalado em seu sistema.
+Nós iremos utilizar o gerenciador de dependências [Carthage](https://github.com/Carthage/Carthage) para realizar o download e a construção do iOS SDK. Você precisará [instalar o Carthage](https://github.com/Carthage/Carthage#installing-carthage) se ainda não estiver instalado em seu sistema.
 
 1. Crie um arquivo no diretório do projeto chamado de `Cartfile`.
 
     ![Create Cartfile](quickstart-resources/03-CreateCartfile.png?raw=true)
 
-2. Add the following line to your `Cartfile`. This specifies the iOS SDK as a dependency. In a production app, you may also want to specify a [version requirement](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#version-requirement).
+2. Adicione a seguinte linha ao `Cartfile`. Isso especifica o SDK do iOS como uma dependência. Em um aplicativo de produção, você também poderá especificar um [requisito de versão](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#version-requirement).
 
     ```
     github "watson-developer-cloud/ios-sdk"
@@ -28,7 +28,7 @@ Nós iremos utilizar o gerenciador de dependências [Carthage](https://github.co
 
     ![Add Dependency](quickstart-resources/04-AddDependency.png?raw=true)
 
-3. Open the Terminal and navigate to your project directory. Then use Carthage to download and build the iOS SDK:
+3. Abra o Terminal e navegue até o diretório do projeto. Em seguida, use Carthage para fazer o download e construir o iOS SDK:
 
     ```
     $ carthage update --platform iOS
@@ -36,27 +36,27 @@ Nós iremos utilizar o gerenciador de dependências [Carthage](https://github.co
 
     ![Carthage Update](quickstart-resources/05-CarthageUpdate.png?raw=true)
 
-Carthage clones the iOS SDK repository and builds a framework for each Watson service in the `Carthage/Build/iOS` directory. It also builds a framework called `RestKit` that is used internally for networking and JSON parsing.
+Carthage clona o repositório SDK do iOS e constrói o frameword para cada serviço Watson no diretório `Carthage / Build / iOS`. Ele também constrói uma estrutura chamada `RestKit` que é usada internamente para rede/comunicação e parsing JSON.
 
-### Add iOS SDK Frameworks to Application
+### Adicionar o Framework iOS SDK ao Aplicativo
 
-To use the iOS SDK frameworks, we need to link them with our application.
+Para usar o frameword do iOS SDK, precisamos vinculá-las ao nosso aplicativo.
 
-1. In Xcode, navigate to your application target's "General" settings tab. Then scroll down to the "Linked Frameworks and Libraries" section and click the `+` icon.
+1. No Xcode, navegue até a guia de configurações "Geral" do seu aplicativo. Em seguida, role até a seção "Linked Frameworks and Libraries" e clique no ícone `+`.
 
     ![General Settings](quickstart-resources/06-GeneralSettings.png?raw=true)
 
-2. In the window that appears, choose "Add Other..." and navigate to the `Carthage/Build/iOS` directory. Select the `TextToSpeechV1` and `RestKit` frameworks to link them with your application.
+2. Na janela que aparece, escolha "Adicionar outro ..." e navegue até o diretório `Carthage / Build / iOS`. Selecione os frameworks `TextToSpeechV1` e` RestKit` para então vinculá-las à sua aplicação.
 
     ![Link Frameworks](quickstart-resources/07-LinkFrameworks.png?raw=true)
 
-We also need to copy the frameworks into our application to make them accessible at runtime. We will use a Carthage script to copy the frameworks and avoid an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216).
+Também precisamos copiar os frameworks em nosso aplicativo para torná-los acessíveis em tempo de execução. Usaremos um script do Carthage para copiar os frameworks e evitar o [bug de submissão da App Store](http://www.openradar.me/radar?id=6409498411401216).
 
-1. In Xcode, navigate to your application target's "Build Phases" settings tab. Then click the `+` icon and add a "New Run Script Phase."
+1. No Xcode, navegue até a guia de configurações do "Build Phases" do seu aplicativo. Em seguida, clique no ícone `+` e adicione uma "New Run Script Phase.".
 
     ![New Run Script Phase](quickstart-resources/09-NewRunScriptPhase.png?raw=true)
 
-2. Add the following command to the run script phase:
+2. Adicione o seguinte comando para executar a fase de script:
 
     ```
     /usr/local/bin/carthage copy-frameworks
@@ -64,7 +64,7 @@ We also need to copy the frameworks into our application to make them accessible
 
     ![AddCarthageScript](quickstart-resources/10-AddCarthageScript.png?raw=true)
 
-4. Add the frameworks you'd like to use (and the `RestKit` framework) to the "Input Files" list:
+4. Adicione os frameworks que você gostaria de usar (e o framework `RestKit`) para a lista" Input Files ":
 
     ```
     $(SRCROOT)/Carthage/Build/iOS/TextToSpeechV1.framework
@@ -73,15 +73,15 @@ We also need to copy the frameworks into our application to make them accessible
 
     ![Add Input Files](quickstart-resources/11-AddInputFiles.png?raw=true)
 
-## Add Exception for App Transport Security
+## Adicionar exceção para a Segurança de Transporte de Aplicativo
 
-To securely connect to IBM Watson services, the application's `Info.plist` file must be modified with an App Transport Security exception for the `watsonplatform.net` domain.
+Para se conectar de forma segura aos serviços do IBM Watson, o arquivo `Info.plist` do aplicativo deve ser modificado com uma exceção de Segurança de Transporte de Aplicativo para o domínio `watsonplatform.net`.
 
-1. In Xcode, right-click on the `Info.plist` file and choose `Open As -> Source Code`.
+1. No Xcode, clique com o botão direito no arquivo `Info.plist` e escolha `Open As -> Source Code`.
 
     ![Open As Source Code](quickstart-resources/12-OpenAsSourceCode.png?raw=true)
 
-2. Copy-and-paste the following source code into the `Info.plist` file.
+2. Copie e cole o seguinte código-fonte no arquivo `Info.plist`.
 
     ```
     <key>NSAppTransportSecurity</key>
@@ -105,13 +105,13 @@ To securely connect to IBM Watson services, the application's `Info.plist` file 
 
     ![App Transport Security Exception](quickstart-resources/13-AppTransportSecurity.png?raw=true)
 
-## Synthesize with Text to Speech
+## Sintetizar com o Text to Speech
 
-We will modify our project's `ViewController` to synthesize English text with the Text to Speech service.
+Modificaremos o `ViewController` do nosso projeto para sintetizar p texto em inglês utilizando serviço Text to Speech.
 
-1. In Xcode, open the `ViewController.swift` file.
+1. No Xcode, abra o arquivo `ViewController.swift`.
 
-2. Add import statements for `TextToSpeechV1` and `AVFoundation`:
+2. Adicionar as instruções de importação para `TextToSpeechV1` e` AVFoundation`:
 
     ```swift
     import TextToSpeechV1
@@ -120,9 +120,9 @@ We will modify our project's `ViewController` to synthesize English text with th
 
     ![Import Frameworks](quickstart-resources/14-ImportFrameworks.png?raw=true)
 
-3. Add a `var audioPlayer: AVAudioPlayer!` property to the `ViewController` class. This ensures that the audio player does not fall out of scope and end playback when the `viewDidLoad()` function returns.
+3. Adicione uma propriedade `var audioPlayer: AVAudioPlayer!` à classe `ViewController`. Isso garante que o player de áudio não saia fora do escopo e termina a reprodução quando a função `viewDidLoad ()` retornar.
 
-4. Add the following code to your `viewDidLoad` method. Be sure to update the username and password with the credentials for your Watson Text to Speech instance.
+4. Adicione o seguinte código ao seu método `viewDidLoad`. Certifique-se de atualizar o nome de usuário e a senha com as credenciais para a sua instância do Watson Text to Speech.
 
     ```swift
     let username = "your-text-to-speech-username"
@@ -139,4 +139,4 @@ We will modify our project's `ViewController` to synthesize English text with th
 
     ![Synthesize Text](quickstart-resources/15-SynthesizeText.png?raw=true)
 
-5. Run your application in the simulator to hear the synthesized text!
+5. Execute seu aplicativo no simulador para ouvir o texto sintetizado!
