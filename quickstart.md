@@ -8,7 +8,7 @@ Este guia contém instruções passo a passo para criar um aplicativo iOS com o 
 
     ![New Project](quickstart-resources/01-NewProject.png?raw=true)
 
-2. Set the product name to "Watson Speaks" and language to "Swift."
+2. Defina o nome do produto para "Watson Speaks" e a linguagem para "Swift".
 
     ![Project Settings](quickstart-resources/02-ProjectSettings.png?raw=true)
 
